@@ -8,7 +8,7 @@ MOUNT_TO="/media/Hosted"
 start_wireshark_dump(){
   # sudo dumpcap -D - for avaliable interfaces
   sudo dumpcap -i 2 -w "$1/$2/ms_netcap.pcapng" -b filesize:30000 -b files:100
-  # Ring buffer for 100 files of 30mb files
+  # Ring buffer for 100 files of 30mb each
 }
 
 if mountpoint -q $DIRECORY_TO_MOUNT; then
