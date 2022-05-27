@@ -1,0 +1,3 @@
+chmod +x <filename>.sh
+
+Execute: ./<filename>.sh
