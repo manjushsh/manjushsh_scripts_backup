@@ -5,7 +5,7 @@ start_wireshark_dump() {
   # sudo dumpcap -D - for avaliable interfaces
   # https://www.wireshark.org/docs/wsug_html_chunked/AppToolsdumpcap.html
   sudo dumpcap -i 2 -w "$1/$2/$3" -b filesize:30000 -b files:100
-  # Ring buffer for files of 100 30mb files
+  # Ring buffer for 100 files of 30mb each
 }
 
 create_directory_and_files() {
