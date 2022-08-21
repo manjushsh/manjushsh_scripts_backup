@@ -11,10 +11,10 @@ ChrootDirectory /home
 X11Forwarding no
 AllowTcpForwarding no
 ForceCommand internal-sftp'
-    if grep -Fxq "$config" /Desktop/test; then
+    if grep -Fxq "$config" /etc/ssh/sshd_config; then
         echo "Config is already added."
     else
-        echo config | sudo tee -a /Desktop/test
+        echo config | sudo tee -a /etc/ssh/sshd_config
     fi
     sudo systemctl restart ssh
     create_sftp_user
@@ -22,15 +22,17 @@ ForceCommand internal-sftp'
 
 create_sftp_user() {
     sudo addgroup sftp
-    echo "Enter Username you want for sftp user: "
+    echo "Enter Username you want for SFTP user: "
     read username
-    echo "Enter Password for $username: "
-    read password
-    # sudo useradd -m "$username" -g sftp
-    config_ssh
+    sudo useradd -m $username -g sftp
+    echo "Set Password for $username: "
+    sudo passwd "$username"
+    sudo chmod 700 /home/$username/
+    sftp $username@127.0.0.1
 }
 
 init() {
+    install_dependenies
     config_ssh
 }
 
