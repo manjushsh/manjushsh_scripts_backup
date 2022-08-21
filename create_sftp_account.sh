@@ -17,8 +17,8 @@ config_ssh() {
         echo "Config is already added."
     else
         echo "$SSH_CONFIG" | sudo tee -a /etc/ssh/sshd_config
+        sudo systemctl restart ssh
     fi
-    sudo systemctl restart ssh
     create_sftp_user
 }
 
