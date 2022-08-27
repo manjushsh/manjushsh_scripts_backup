@@ -7,9 +7,11 @@ ChrootDirectory /home
 X11Forwarding no
 AllowTcpForwarding no
 ForceCommand internal-sftp"
+# DEPENDENCY_LIST=("ssh" "nano")
+DEPENDENCY_LIST=("ssh")
 
 install_dependenies() {
-    sudo apt install ssh
+    sudo apt install "${DEPENDENCY_LIST[@]}"
 }
 
 config_ssh() {
